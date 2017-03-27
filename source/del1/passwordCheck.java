@@ -1,3 +1,4 @@
+//Del 1 Uppgift 2
 package del1;
 
 
@@ -18,25 +19,16 @@ public class passwordCheck {
 		boolean foundB = false;
 		boolean foundC = false;
 		
-		for(int i = 0; i < alphabet.length; i++){
-			
-			if(password.contains(alphabet[i]))
-				{foundA = true;}
-			
-			if(password.contains(alphabetCaps[i]))
-				{foundB = true;}	
+		for(int i = 0; i < alphabet.length; i++){//checks password contains every group. (This method was )
+			if(password.contains(alphabet[i])){foundA = true;}
+			if(password.contains(alphabetCaps[i])){foundB = true;}
 		}
 		
 		for(int j = 0; j < number.length; j++){
-			
-			if(password.contains(number[j]))
-				{foundC = true;}
+			if(password.contains(number[j])){foundC = true;}
 		}
-	
-		if(foundA == true && foundB == true && foundC == true){
-			return true;}
-		else{
-			return false;
+		if(foundA == true && foundB == true && foundC == true){return true;}//checks what to send back.
+		else{return false;
 		}
 	}
 	

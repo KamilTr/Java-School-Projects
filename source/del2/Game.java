@@ -1,3 +1,5 @@
+//Del 2	(Jag är inte nöjd den delen, men väljer att skicka in den för att nå deadline. Lotteriet är spelbart.)
+
 package del2;
 //Ett Spel är en ArrayList av Spelare. Varje spelare har en ArrayList som håller flera lottorader 
 //samt annat namn, insats, mm . Följande skall programmet göra.

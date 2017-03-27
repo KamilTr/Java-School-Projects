@@ -1,7 +1,7 @@
+//Del 2	(Jag är inte nöjd den delen, men väljer att skicka in den för att nå deadline. Lotteriet är spelbart.)
 package del2;
 
 import java.util.*;
-	// kompletera med metoder och variabler som du behöver 
    public class Player
    {
    
