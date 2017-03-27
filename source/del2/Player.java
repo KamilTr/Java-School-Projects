@@ -12,21 +12,17 @@ import java.util.*;
 	        
       public Player(String thename)
       {
-                  
-         name=thename;			
+                  			
          lottoraws=new ArrayList<int []>();
          int lenghtCounter = 0;
     	 while((thename.charAt(lenghtCounter) >= 65 && thename.charAt(lenghtCounter) <=91) || (thename.charAt(lenghtCounter) >= 97 && thename.charAt(lenghtCounter) <=122) || (thename.charAt(lenghtCounter) == 32)){
     		 lenghtCounter++;
-    		 System.out.println(lenghtCounter);
     	 }
     	 int[] inputName = new int[lenghtCounter];
     	 for(int i = 0; i < lenghtCounter; i++){
     		 inputName[i] = thename.charAt(i);           		 
     	 }
-    	 System.out.print(Arrays.toString(inputName));
     	 int nrOfRows = Integer.parseInt(thename.replaceAll("[\\D]", ""));
-    	 System.out.println(nrOfRows);
     	 addPlayer(inputName);
     	 addLottoraws(nrOfRows);
     	 
@@ -34,7 +30,7 @@ import java.util.*;
       public void addPlayer(int[] playerName){
     	  
     	  lottoraws.add(0, playerName);
-
+    	  for(int i = 0; i < playerName.length; i++) name = name + String.valueOf(((char)playerName[i]));
       }  
       public void addLottoraws( int nr)
       {
@@ -42,14 +38,41 @@ import java.util.*;
          for( int i=0;i<nrOfRaws;i++){
         	 lottoraws.add((generateArray.GenerateArray(7, 1, 35)));
          }
-            ;
-        //lottorows.add(Game.generateLottorow(7)); // metoden generateLottoRaw() skall finas Game klassen
       }  
          	
-      public String getResult()
+      public String getResult(int[] winningRow)
       {
+    	  ArrayList<int[]> sixCorrect = new ArrayList<int[]>();
+    	  ArrayList<int[]> sevenCorrect = new ArrayList<int[]>();
+    	  for(int i = 0; i < lottoraws.size(); i++){
+    		  int[] testArray = lottoraws.get(i);
+    		  int rightCounter = 0;
+    		  for(int j = 0; j < winningRow.length; j++){
+    			  for(int k = 0; k < testArray.length;k++){
+    				  if(testArray[k] == winningRow[j]) rightCounter++;    			  
+    				  }
+    		  }
+    		  if(rightCounter==6) sixCorrect.add(testArray);
+    		  if(rightCounter==7) sevenCorrect.add(testArray);
+    	  }
+    	  String six = "";
+    	  String seven = "";
+    	  if(sixCorrect.size() != 0){
+    		  for(int i = 0; i<sixCorrect.size(); i++){
+    		  six = six + Arrays.toString((sixCorrect.get(i)))+ "\n";
+    		  }
+    	  }
+    	  if(sevenCorrect.size() != 0){
+    		  for(int i = 0; i<sevenCorrect.size(); i++){
+    		  seven = seven + Arrays.toString((sevenCorrect.get(i)))+ "\n";
+    		  }
+    	  }
+    	  String anwser = name + " hade inga vinnande lotter.";
+    	  if(sixCorrect.size() > 0 && sevenCorrect.size() < 1)anwser = name + "hade 6 rätt i lott:\n" + six;
+    	  if(sixCorrect.size() < 1 && sevenCorrect.size() > 0)anwser = name + "hade 7 rätt i lott:\n" + seven;
+    	  if(sixCorrect.size() > 0 && sevenCorrect.size() > 0)anwser = name + "hade 6 rätt i lott:\n" + six + "\n Hade 7 rätt i lott:\n" + seven;
         // returnerar en string som inehåller spelare namnet, och lotto raderna som innehåller 7 och 6 rätt
-         return "";
+         return anwser;
       }
      
       public String toString()

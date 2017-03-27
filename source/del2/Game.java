@@ -56,10 +56,8 @@ public class Game
           case 2:
              {
             	 System.out.print("\nAnge: Namn och antal önskade lottorader  : ");
-            	 
-            	 
-            	 System.out.println();
-            	 
+            	 String inputCreate = scan.nextLine();
+            	 playerList.add(new Player(inputCreate));
                 // Så länge användaren vill läggs till nya spelare till lotteriet
              	// Spelarna skall välja antal rader de spelar
              	// lottonummer annars skall genereras automatisk 
@@ -68,13 +66,14 @@ public class Game
              }	 
           case 3:
              {
-                gameNumbers= generateArray.GenerateArray(7, 1, 35);
+                gameNumbers= generateArray.GenerateArray(10, 1, 35);
                 break;
              }
           	
           case 4:
              {
-                 // för varje spelare skall det räknas hur många rader den har med 7,6 rätt
+            	 System.out.println("The winning numbers are:" + Arrays.toString(gameNumbers) + "\n");
+                 for(int i = 0; i < playerList.size(); i++)System.out.println((playerList.get(i)).getResult(gameNumbers));
              	 break;
              }
                       
